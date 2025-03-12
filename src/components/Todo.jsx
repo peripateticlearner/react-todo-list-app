@@ -6,7 +6,7 @@ function Todo({ todo, dispatch }) {
   const [editText, setEditText] = useState(title);
 
   return (
-    <div style={styles}>
+    <div className={`todo-item ${completed ? "completed" : ""}`}>
       <input
         type="checkbox"
         checked={completed}
@@ -34,8 +34,8 @@ function Todo({ todo, dispatch }) {
         </button>
       ) : (
         <>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button
+          <button className="edit-btn" onClick={() => setIsEditing(true)}>Edit</button>
+          <button className="delete-btn"
             onClick={() => dispatch({ type: "delete_todo", payload: id })}
             disabled={!completed}
           >
@@ -46,12 +46,5 @@ function Todo({ todo, dispatch }) {
     </div>
   );
 }
-
-const styles = {
-  display: "flex",
-  justifyContent: "space-around",
-  alignItems: "center",
-  padding: "10px",
-};
 
 export default Todo;
